@@ -3,11 +3,11 @@
 
 #include "common.h"
 
-#define MAX_STRING_LEN 256 //como de largo son los strings
-#define PREFERENCES_COUNT 5 //cada usuario tiene que tener 5 características 
+#define MAX_STRING_LEN 256 //la longitud máxima de los strings
+#define PREFERENCES_COUNT 5 //cada usuario tiene que tener 5 preferencias 
 
 
-struct User; //Prototipo. Estamos diciendo que existe un tipo que se llama user que no sabemos lo que tiene, però existe.
+struct User; //Estamos afirmando la existencia de un individuo conocido como "user" cuyas características específicas desconocemos, sin embargo, está presente.
 
 typedef struct UsersListNode {
     struct User* user;
@@ -42,9 +42,9 @@ void init_user(User* user);
 User* create_user();
 void destroy_user(User* user);
 
-const char* get_user_username(const User* user); //función que nos permite inicializar un usuario
-//nos devuelve la preferencia de (int idx) del usuario (user* u).
-// Estamos calculando valores de punteros, sino ponemos * estamos copinando el contenido de la estructura.
+const char* get_user_username(const User* user); //Tenemos una función que facilita la inicialización de un usuario.
+//Esta función nos proporciona la preferencia de un usuario específico (user* u) en base a un índice dado (int idx).
+// Realizamos cálculos con punteros, ya que si omitimos el asterisco (*) estaríamos copiando el contenido de la estructura.
 void set_user_username(User* user, const char* username);
 
 int get_user_born_year(const User* user);
@@ -78,7 +78,7 @@ void init_users_list(UsersList* list); //inicializar la lista
 
 void add_user_to_list(UsersList* list, User* user); //añadir un usuario a la lista
 
-void show_all_users_in_list(const UsersList* list); //mostrar la lista
+void show_all_users_in_list(const UsersList* list); //nos muestra la lista
 
 void clear_users_list(UsersList* list, bool destroy_users); //borrar todos los elementos de la lista
 
