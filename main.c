@@ -14,8 +14,8 @@ void show_main_menu(UsersList* users);
 int read_option(void)
 {
     int value;
-    if (scanf("%d", &value) != 1) //scanf devuelve un número, este número es igual al número de porcentajes
-                                 //que ha podido escanear correctamente, si escanea devuelve un 1.
+    if (scanf("%d", &value) != 1) //La función scanf devuelve un valor numérico que indica el número de elementos que ha podido escanear correctamente.
+                                  //Si ha logrado escanear un elemento, el valor de retorno será 1.
         return -1;
 
     return value;
@@ -187,19 +187,19 @@ void show_main_menu(UsersList* users) //controla el menú principal (nos dará l
         printf("    3) Operate as specific user\n");
         printf("    4) Exit\n\n");
 
-        option = read_option(); //preguntar al usuario cual de las 4 opciones quiere
+        option = read_option(); //preguntar al usuario cual de las 4 opciones quiere operar
         switch (option) //encadenar if else...
         {
-            case 1: //cuando options haya calculado el valor 1 (crear nuevo usuario)
+            case 1: //cuando options haya calculado el valor 1 (creará un nuevo usuario)
                 create_new_user(users);
                 break;
 
             case 2:
-                show_all_users_in_list(users); //cuando options haya calculado el valor 2 (mostrar todos los usuarios)
+                show_all_users_in_list(users); //cuando options haya calculado el valor 2 (mostrará todos los usuarios)
                 break;
 
             case 3:
-                show_user_menu(users); //cuando options haya calculado el valor 3 (encontramos usuario concreto)
+                show_user_menu(users); //cuando options haya calculado el valor 3 (operaremos como un usuario en concreto)
                 break;
 
             case 4: break; //cuando options haya calculado el valor 4 (exit)
