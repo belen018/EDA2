@@ -272,17 +272,31 @@ Limitaciones o posibles mejoras: No se realizan validaciones exhaustivas del for
 ### SOLUCIÓN:
 
 #### Arquitectura del sistema: 
-Esta subsección tendría que incluir al menos un diagrama de la arquitectura del sistema y una descripción 
-de los bloques principales y su funcionalidad.
+
+En el cual, encontramos diferentes bloques:
+
+Servidor: responsable de recibir y procesar las solicitudes de los clientes, gestionar la lógica empresarial y devolver las respuestas adecuadas. Gestiona la comunicación con los clientes a través de sockets y coordina las interacciones con las bases de datos. 
+Base de datos: este componente almacena y recupera datos relacionados con las redes sociales, como perfiles de usuarios, publicaciones, amistades, etc. Gestión eficiente de datos utilizando un sistema de gestión de base de datos (DBMS). 
+Clientes de Red: Aplicaciones que utilizan los usuarios para acceder a las redes sociales. Permite a los usuarios registrarse, iniciar sesión, encontrar amigos, publicar contenido y realizar otras actividades relacionadas con las redes sociales. Comunicándose con el servidor a través de la red.
+Interfaz de Usuario (UI): Es la interfaz gráfica o textual con la que interactúan los usuarios para utilizar la red social. Ofrezca a los usuarios una forma intuitiva y fácil de usar para realizar acciones en las redes sociales, como ver publicaciones, comentar y enviar mensajes.
+
+!
 
 #### Gestión de errores: 
-Esta subsección tendría que describir como se gestionaron los errores en el proyecto y el razonamiento que hay detrás.
+
+En este proyecto, los errores se han manejado usando técnicas de manejo de errores de C, y cuando ocurrieron errores, se usaron mecanismos tales como excepciones y códigos de error de retorno para indicar y manejar condiciones excepcionales. 
+
+El razonamiento detrás del manejo de errores es asegurar que el sistema sea robusto y pueda manejar situaciones inesperadas o incorrectas. La detección y el manejo adecuados de errores evitan errores críticos y brindan una experiencia de usuario más confiable.
+
+!
+
 
 #### Diseño del modelo de datos: 
-Esta subsección tendría que incluir al menos un diagrama de flujo de datos de la solución y su descripción.
+
+Tenemos una entidad de "Usuario" que almacena información sobre los usuarios registrados, como nombre de usuario, nombre, contraseña y fecha de registro. Existe una relación de "amigo" que conecta a dos usuarios y representa la amistad entre ellos. La entidad 'Publicaciones' almacena información sobre las publicaciones realizadas en la red social. Cada publicación tiene un identificador, un autor (una referencia al identificador del usuario) y un contenido. Descripción y procesamiento del conjunto de datos: 
 
 #### Descripción y procesamiento del conjunto de datos: 
-Esta subsección tendría que incluir una descripción del(s) conjunto(s) de datos utilizados, como se leyeron y procesar.
+La descripción y el procesamiento de los conjuntos de datos utilizados en las redes sociales depende de los requisitos específicos del proyecto. Esto puede variar desde datos de usuario y perfil hasta publicaciones, comentarios y otras interacciones. Los conjuntos de datos se pueden almacenar en bases de datos, leer y procesar mediante consultas SQL o métodos de acceso a bases de datos específicas... 
 
 ### REFERENCIAS:
 Esta sección tendría que incluir las referencias utilizadas en el informe. Estas referencias incluyen cualquier sitio web,
