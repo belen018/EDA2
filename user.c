@@ -72,7 +72,7 @@ void show_fill_user_data_menu(User* user)
     {
         printf("Write a username:\n");
         status = scanf("%s", user->username); //si no detecta un string, devolverá un 0 en lugar de un 1.
-        //Como está en un while, sino a devuelto un 1 volverá a preguntarnos por el usuario.
+        //Dado que esto ocurre dentro de un bucle while, si no se ha retornado un valor de 1, se volverá a solicitar información del usuario.
     }
 
     status = 0;
@@ -101,7 +101,7 @@ void show_fill_user_data_menu(User* user)
         status = 0;
         while (status != 1)
         {
-            printf("Write preference %d/%d:\n", (i + 1), PREFERENCES_COUNT); //1r %d es la i y el 2n %d es PREFERENCES_COUNT
+            printf("Write preference %d/%d:\n", (i + 1), PREFERENCES_COUNT); //El 1r %d es la i y el 2n %d es PREFERENCES_COUNT
             status = scanf("%s", user->preferences[i]); //user->preferences es un array de string, por lo que cogemos el de la posición i
         }
     }
@@ -164,16 +164,16 @@ void clear_users_list(UsersList* list, bool destroy_users)
     init_users_list(list); //usamos la función init_user_list() para inicializar los valores
 }
 
-size_t users_list_size(const UsersList* list) { return list->size; } //pide una lista, devuelve size_t
+size_t users_list_size(const UsersList* list) { return list->size; } //pide una lista; devuelve size_t
 
-bool users_list_empty(const UsersList* list) { return list->size == 0; } //pide una lista, devuelve bool
+bool users_list_empty(const UsersList* list) { return list->size == 0; } //pide una lista; devuelve bool
 
 
 User* search_user_by_username(const UsersList* list, const char* username)
 {
     for (UsersListNode* node = list->first; node != NULL; node = node->next) //Empezar por el primer nodo de la lista hasta el último.
         if (strcmp(node->user->username, username) == 0) //usaremos strcmp para saber si son iguales
-            return node->user; //si son iguales hemos encontardo el usuario que queríamos 
+            return node->user; //si son iguales hemos encontrado el usuario que queríamos 
 
     return NULL; //si se acaba el for y no hemos devuelto nada quiere decir que no existe
 }
