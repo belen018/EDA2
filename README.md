@@ -288,7 +288,7 @@ En este proyecto, los errores se han manejado usando técnicas de manejo de erro
 
 El razonamiento detrás del manejo de errores es asegurar que el sistema sea robusto y pueda manejar situaciones inesperadas o incorrectas. La detección y el manejo adecuados de errores evitan errores críticos y brindan una experiencia de usuario más confiable.
 
-!
+!(https://github.com/belen018/EDA2/blob/7a924996c9bf8775bec6ba12b642099a9a4f4021/DIAGRAMA.png)
 
 
 #### Diseño del modelo de datos: 
