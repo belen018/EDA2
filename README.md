@@ -280,7 +280,7 @@ Base de datos: este componente almacena y recupera datos relacionados con las re
 Clientes de Red: Aplicaciones que utilizan los usuarios para acceder a las redes sociales. Permite a los usuarios registrarse, iniciar sesión, encontrar amigos, publicar contenido y realizar otras actividades relacionadas con las redes sociales. Comunicándose con el servidor a través de la red.
 Interfaz de Usuario (UI): Es la interfaz gráfica o textual con la que interactúan los usuarios para utilizar la red social. Ofrezca a los usuarios una forma intuitiva y fácil de usar para realizar acciones en las redes sociales, como ver publicaciones, comentar y enviar mensajes.
 
-!
+!(diagrama_1.png)
 
 #### Gestión de errores: 
 
