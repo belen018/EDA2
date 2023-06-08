@@ -79,7 +79,7 @@ Limitaciones o posibles mejoras: Sería útil añadir verificaciones de puntero 
 
 **TIEMPO:** 50 min
 
-**UBICACIÓN:** Archivo: *'user.c'* líneas 115-165
+**UBICACIÓN:** Archivo: *'user_list.c' y 'user_list.h'* 
 
 ### STACK:
 **VISTA GENERAL:** 
@@ -103,9 +103,43 @@ Dentro de este objetivo pueden haber las siguientes limitaciones o posibles mejo
 ### QUEUE:
 **VISTA GENERAL:**
 
-**TIEMPO:**
+En la función 'init_users_queue', se utilizan las variables 'first' y 'last' para establecer la cola de usuarios inicializada sin elementos.
 
-**UBICACIÓN:**
+En las funciones 'enqueue_user' y 'dequeue_user', se utiliza la variable 'node' para crear un nuevo nodo que contiene un usuario y una referencia al siguiente nodo en la cola.
+
+En la función 'get_users_queue_first', se utiliza la variable 'user' para almacenar el primer usuario en la cola antes de ser devuelto.
+
+En la función 'search_user_by_username_on_queue', se utiliza la variable 'node' para recorrer los nodos de la cola y encontrar un usuario por su nombre de usuario.
+
+La cola de usuarios (UsersQueue) se implementa utilizando una estructura enlazada, donde cada nodo (UsersQueueNode) contiene un usuario y una referencia al siguiente nodo en la cola.
+
+'init_users_queue': Inicializa una cola de usuarios vacía estableciendo los punteros 'first' y 'last' en NULL.
+
+'users_queue_empty': Verifica si la cola de usuarios está vacía. Devuelve true si 'first' es NULL.
+
+'enqueue_user': Agrega un usuario a la cola, creando un nuevo nodo y actualizando los punteros 'first' y 'last'.
+
+'dequeue_user': Elimina y devuelve el primer usuario de la cola, actualizando los punteros 'first' y 'last' según corresponda.
+
+'get_users_queue_first': Devuelve el primer usuario de la cola sin eliminarlo.
+
+'clear_users_queue': Elimina todos los nodos de la cola y la reinicializa a su estado inicial.
+
+'search_user_by_username_on_queue': Busca un usuario por su nombre de usuario en la cola. Devuelve el usuario si se encuentra, de lo contrario, devuelve NULL.
+
+La función 'enqueue_user' tiene una complejidad de O(1) ya que agrega un elemento al final de la cola en tiempo constante.
+
+La función 'dequeue_user' también tiene una complejidad de O(1) ya que elimina y devuelve el primer elemento de la cola en tiempo constante.
+
+La función 'get_users_queue_first' tiene una complejidad de O(1) ya que simplemente devuelve el primer elemento de la cola sin modificarla.
+
+La función 'search_user_by_username_on_queue' tiene una complejidad de O(n) en el peor de los casos, ya que recorre la cola de manera secuencial para buscar un usuario por su nombre de usuario.
+
+Limitaciones o posibles mejoras:  La implementación actual no realiza ninguna validación de errores o manejo de memoria dinámica. Sería necesario agregar comprobaciones y liberación de memoria adecuada para evitar fugas de memoria y comportamiento inesperado en caso de errores.
+
+**TIEMPO:** 60 min
+
+**UBICACIÓN:** Ficheros: *'user_queue.c' y 'user_queue.h'*
 
 ##### Implementar funcionalmente uno de los algoritmos de búsqueda que se verán dentro del curso (LinearSearch o BinarySearch):
 **VISTA GENERAL:**
@@ -128,7 +162,7 @@ En este objetivo se encuentran las siguientes limitaciones o posibles mejoras: L
 
 **TIEMPO:** 20 min
 
-**UBICACIÓN:** Fichero: *'user.c'* líneas: 172-179.
+**UBICACIÓN:** Ficheros: *'user_list.c' lineas: 80-84* 
 
 ##### Implementar funcionalmente uno de los algoritmos de ordenamiento que se verán a lo largo del curso (InsertionSort, BubbleSort, MergeSort o QuickSort):
 **VISTA GENERAL:**
@@ -140,9 +174,25 @@ En este objetivo se encuentran las siguientes limitaciones o posibles mejoras: L
 ##### Implementar o bien un Diccionario (Dictionary) o bien una tabla Hash (HashTable) funcionales:
 **VISTA GENERAL:**
 
-**TIEMPO:**
+*Variables utilizadas y propósito:*
 
-**UBICACIÓN:**
+La variable 'len' se utiliza para almacenar la longitud de la palabra (el número de caracteres).
+
+La variable 'sum' se utiliza para calcular la suma de los valores ASCII de los caracteres de la palabra.
+
+*Estructuras de datos utilizadas:*
+
+No se utiliza ninguna estructura de datos específica en esta función. El resultado del cálculo se utiliza para indexar una tabla hash (hash table) o un arreglo asociativo.
+
+La función trendings_hash se utiliza para asignar un valor hash a una palabra. El propósito específico y el uso posterior de este valor hash dependerán del contexto y de cómo se aplique en la aplicación.
+
+El algoritmo utilizado para calcular el valor hash es lineal, ya que recorre cada carácter de la palabra una vez en un bucle 'for'. Por lo tanto, su complejidad es O(n), donde n es la longitud de la palabra.
+
+Limitaciones o posibles mejoras: Para mejorar la función, se podría considerar el uso de algoritmos de hash más sofisticados, como el algoritmo de hash de la función SHA o algoritmos basados en criptografía. Estos algoritmos suelen proporcionar una mejor distribución de los valores hash y ayudan a reducir las colisiones.
+
+**TIEMPO:** 240 min
+
+**UBICACIÓN:** Ficheros: *'trendings.c'* 
 
 #### SE HAN CUMPLIDO LOS OBJETIVOS DESEABLES: 
 
@@ -179,16 +229,7 @@ Limitaciones o posibles mejoras: El algoritmo asume que el formato del archivo C
 
 **TIEMPO:** 180 min
 
-**UBICACIÓN:** Fichero: *'user.c'* líneas: 183-241
-
-##### Red Social temática y con una capa de personalización a nivel conceptual:
-**VISTA GENERAL:**
-
-**TIEMPO:**
-
-**UBICACIÓN:**
-
-#### SE HAN CUMPLIDO LOS OBJETIVOS DE EXPLORACIÓN: 
+**UBICACIÓN:** Ficheros: *'csv.c y csv.h'* 
 
 ##### Implementar funcionalidad show several random users, dentro de la funcionalidad de operar como un usuario específico:
 **VISTA GENERAL:**
@@ -231,7 +272,7 @@ Limitaciones o posibles mejoras: No se realiza una validación exhaustiva de las
 
 **TIEMPO:** 30 min
 
-**UBICACIÓN:** Fichero: *'main.c'* líneas: 41-84
+**UBICACIÓN:** Fichero: *unknown_friends_menu.c'* líneas: 8-26
 
 ##### Implementar las funcionalidades de lectura y guardado de datos (Información de los usuarios y sus contactos, y demás que se quiera añadir) desde un archivo externo (.txt o csv):
 **VISTA GENERAL:**
@@ -264,7 +305,7 @@ Limitaciones o posibles mejoras: No se realizan validaciones exhaustivas del for
 
 **TIEMPO:** 30 min
 
-**UBICACIÓN:** Archivo: *'user.c'* líneas: 243-260
+**UBICACIÓN:** Archivo: *'csv.c y csv.h'* 
 
 ### SOLUCIÓN:
 
