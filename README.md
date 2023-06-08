@@ -40,7 +40,6 @@ Ferran Mogas Ko
    
    3.4 Descripción y procesamiento del conjunto de datos
 
-4. Partes del código hechas con ayuda de IA
 
 ### INTRODUCCIÓN: 
 
@@ -295,5 +294,3 @@ Tenemos una entidad de "Usuario" que almacena información sobre los usuarios re
 
 #### Descripción y procesamiento del conjunto de datos: 
 La descripción y el procesamiento de los conjuntos de datos utilizados en las redes sociales depende de los requisitos específicos del proyecto. Esto puede variar desde datos de usuario y perfil hasta publicaciones, comentarios y otras interacciones. Los conjuntos de datos se pueden almacenar en bases de datos, leer y procesar mediante consultas SQL o métodos de acceso a bases de datos específicas... 
-
-### PARTES DEL CÓDIGO HECHAS CON AYUDA DE IA: **(Hacerlo al último, SOLO SI ES NECESARIO)**
