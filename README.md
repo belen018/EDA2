@@ -164,13 +164,6 @@ En este objetivo se encuentran las siguientes limitaciones o posibles mejoras: L
 
 **UBICACIÓN:** Ficheros: *'user_list.c' lineas: 80-84* 
 
-##### Implementar funcionalmente uno de los algoritmos de ordenamiento que se verán a lo largo del curso (InsertionSort, BubbleSort, MergeSort o QuickSort):
-**VISTA GENERAL:**
-
-**TIEMPO:**
-
-**UBICACIÓN:**
-
 ##### Implementar o bien un Diccionario (Dictionary) o bien una tabla Hash (HashTable) funcionales:
 **VISTA GENERAL:**
 
