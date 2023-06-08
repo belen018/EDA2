@@ -1,7 +1,5 @@
 #include "user.h"
 
-#include <stdio.h>
-#include <string.h> //para poder usar strings
 
 void init_user(User* user)
 {
@@ -13,7 +11,9 @@ void init_user(User* user)
     for (int i = 0; i < PREFERENCES_COUNT; ++i)
         user->preferences[i][0] = '\0';
 
-    init_users_list(&user->friend_requests);
+    init_users_list(&user->friends);
+    init_users_queue(&user->friend_requests);
+    init_posts_list(&user->posts);
 }
 
 User* create_user()
@@ -25,7 +25,9 @@ User* create_user()
 
 void destroy_user(User* user)
 {
-    clear_user_friend_requests(user);
+    clear_users_list(&user->friends, false);
+    clear_users_queue(&user->friend_requests);
+    clear_posts_list(&user->posts);
     free(user);
 }
 
@@ -54,208 +56,39 @@ void set_user_preference(User* user, size_t index, const char* preference) {
 
 void add_user_friend_request(User* user, User* friend_request)
 {
-    if (search_user_by_username(&user->friend_requests, friend_request->username) == NULL)
-        add_user_to_list(&user->friend_requests, friend_request);
+    if (search_user_by_username_on_queue(&user->friend_requests, friend_request->username) == NULL)
+        enqueue_user(&user->friend_requests, friend_request);
 }
 
-const UsersList* get_user_friend_requests(const User* user) { return &user->friend_requests; }
-
-void clear_user_friend_requests(User* user) { clear_users_list(&user->friend_requests, false); }
-
-
-
-void show_fill_user_data_menu(User* user)
+bool has_user_friend_requests(User* user)
 {
-    int status = 0;
-
-    while (status != 1)
-    {
-        printf("Write a username:\n");
-        status = scanf("%s", user->username); //si no detacta un string, devolverá un 0 en lugar de un 1.
-        //Como está en un while, sino a vuelto un 1 volverá a preguntarnos por el usuario.
-    }
-
-    status = 0;
-    while (status != 1)
-    {
-        printf("Write a born year:\n");
-        status = scanf("%d", &user->born_year);
-    }
-
-    status = 0;
-    while (status != 1)
-    {
-        printf("Write an email:\n");
-        status = scanf("%s", user->email);
-    }
-
-    status = 0;
-    while (status != 1)
-    {
-        printf("Write a current location:\n");
-        status = scanf("%s", user->current_location);
-    }
-
-    for (int i = 0; i < PREFERENCES_COUNT; ++i)
-    {
-        status = 0;
-        while (status != 1)
-        {
-            printf("Write preference %d/%d:\n", (i + 1), PREFERENCES_COUNT); //1r %d es la i. 2n %d es PREFERENCES_COUNT
-            status = scanf("%s", user->preferences[i]); //user->preferences es un array de string, por lo que cogemos el de la posición i
-        }
-    }
-
-    printf("\n");
+    return !users_queue_empty(&user->friend_requests);
 }
 
-
-
-
-void init_users_list(UsersList* list) //dar los valores iniciales a la list
+User* get_user_next_friend_request(User* user)
 {
-    list->first = NULL;
-    list->last = NULL;
-    list->size = 0;
-    list->sorted = false;
+    return get_users_queue_first(&user->friend_requests);
 }
 
-void add_user_to_list(UsersList* list, User* user) //primero creamos nodo y luego miramos si la lista esta vacía.
-                                                   // Si está vacía, el nuevo nodo será el primero.
+void accept_user_next_friend_request(User* user)
 {
-    UsersListNode* node = (UsersListNode*) malloc(sizeof(UsersListNode));
-    node->user = user;
-    node->next = NULL;
-
-    if (list->first == NULL) //o list->last == NULL o list->size = 0
-    {
-        list->first = node;
-        list->last = node;
-        node->prev = NULL;
-    }
-    else
-    {
-        list->last->next = node;
-        node->prev = list->last;
-        list->last = node;
-    }
-    list->size++;
-    list->sorted = false;
+    User* request = dequeue_user(&user->friend_requests);
+    if (request != NULL)
+        add_user_to_list(&user->friends, request);
 }
 
-void show_all_users_in_list(const UsersList* list)
+void decline_user_next_friend_request(User* user)
 {
-    printf("All users:\n");
-    for (UsersListNode* node = list->first; node != NULL; node = node->next)
-        printf("    - %s\n", node->user->username);
-    printf("\n");
+    dequeue_user(&user->friend_requests);
 }
 
-void clear_users_list(UsersList* list, bool destroy_users)
+void clear_user_friend_requests(User* user) { clear_users_queue(&user->friend_requests); }
+
+
+void add_user_post(User* user, const char* post_text)
 {
-    for (UsersListNode *node = list->first, *next; node != NULL; node = next)
-    {
-        next = node->next;
-        if (destroy_users)
-            destroy_user(node->user);
-        free(node);
-    }
-
-    init_users_list(list); //usamos la funcion init_user_list() para inicializar los valores
+    post_text_on_list(&user->posts, post_text);
+    trendings_add_words_from_text(post_text);
 }
 
-size_t users_list_size(const UsersList* list) { return list->size; } //pide una lista, retorna size_t
-
-bool users_list_empty(const UsersList* list) { return list->size == 0; } //pide una lista, retorna bool
-
-
-User* search_user_by_username(const UsersList* list, const char* username)
-{
-    for (UsersListNode* node = list->first; node != NULL; node = node->next) //Empezar por el primer nodo de la lista hasta el último.
-        if (strcmp(node->user->username, username) == 0) //usaremos strcmp para saber si son iguales
-            return node->user; //si son iguales hemos encontardo el usuario que queriamos
-
-    return NULL; //si se acaba el for y no hemos devuelto nada quiere decir que no existe
-}
-
-
-
-User* read_user_from_csv_row(FILE* f)
-{
-    User* user = create_user();
-
-    char stop;
-
-    stop = read_csv_token(f, user->username);
-
-    if (stop != CSV_SEPARATOR)
-    {
-        destroy_user(user);
-        printf("Invalid CSV row.\n");
-        return NULL;
-    }
-    stop = read_csv_number(f, &user->born_year);
-
-    if (stop != CSV_SEPARATOR)
-    {
-        destroy_user(user);
-        printf("Invalid CSV row.\n");
-        return NULL;
-    }
-    stop = read_csv_token(f, user->email);
-
-    if (stop != CSV_SEPARATOR)
-    {
-        destroy_user(user);
-        printf("Invalid CSV row.\n");
-        return NULL;
-    }
-    stop = read_csv_token(f, user->current_location);
-
-    if (stop != CSV_SEPARATOR)
-    {
-        destroy_user(user);
-        printf("Invalid CSV row.\n");
-        return NULL;
-    }
-
-    for (int i = 0; i < PREFERENCES_COUNT; ++i)
-    {
-        if (stop != CSV_SEPARATOR)
-        {
-            destroy_user(user);
-            printf("Invalid CSV row.\n");
-            return NULL;
-        }
-        stop = read_csv_token(f, user->preferences[i]);
-    }
-
-    if (stop != CSV_ENDLINE)
-    {
-        destroy_user(user);
-        printf("Invalid CSV row 'endline'.\n");
-        return NULL;
-    }
-
-    return user;
-}
-
-void fill_users_list_from_csv(UsersList* list, const char* filename)
-{
-    FILE* f = fopen(filename, "r");
-    if (!f)
-    {
-        printf("CSV File '%s' not found.", filename);
-        return;
-    }
-
-    while (!feof(f))
-    {
-        User* user = read_user_from_csv_row(f);
-        if (user != NULL)
-            add_user_to_list(list, user);
-    }
-
-    fclose(f);
-}
-
+const PostsList* get_user_timeline(const User* user) { return &user->posts; }
