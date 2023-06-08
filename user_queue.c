@@ -70,7 +70,6 @@ void clear_users_queue(UsersQueue* queue)
 }
 
 
-
 User* search_user_by_username_on_queue(const UsersQueue* queue, const char* username)
 {
     for (UsersQueueNode* node = queue->first; node != NULL; node = node->next) //Empezar por el primer nodo de la lista hasta el último.

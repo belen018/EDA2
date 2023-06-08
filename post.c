@@ -36,6 +36,7 @@ const Post* post_text_on_list(PostsList* list, const char* text)
     return post;
 }
 
+
 const Post* get_first_post_on_list(const PostsList* list)
 {
     if (posts_list_empty(list))

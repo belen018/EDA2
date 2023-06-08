@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+
 #define INVALID_OPTION -1
 #define MAX_TRENDING_LEN 100
 
@@ -18,7 +19,6 @@ int random_int(int max);
 int read_option(void);
 
 void consume_stdin();
-
 
 
 #endif //__COMMON_H__

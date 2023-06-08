@@ -4,7 +4,6 @@
 #include "csv.h"
 #include "menu.h"
 
-
 int main()
 {
     trendings_init();

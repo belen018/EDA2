@@ -70,6 +70,7 @@ User* get_user_next_friend_request(User* user)
     return get_users_queue_first(&user->friend_requests);
 }
 
+
 void accept_user_next_friend_request(User* user)
 {
     User* request = dequeue_user(&user->friend_requests);

@@ -72,6 +72,7 @@ void clear_users_list(UsersList* list, bool destroy_users)
     init_users_list(list);  //Usamos la función init_user_list() para inicializar los valores.
 }
 
+
 size_t users_list_size(const UsersList* list) { return list->size; } //Pide una lista; devuelve size_t.
 
 bool users_list_empty(const UsersList* list) { return list->size == 0; }

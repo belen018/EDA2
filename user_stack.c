@@ -7,6 +7,7 @@ void init_users_stack(UsersStack* stack)
     stack->top = NULL;
 }
 
+
 bool users_stack_empty(const UsersStack* stack) { return stack->top == NULL; }
 
 void push_users_stack(UsersStack* stack, User* user)

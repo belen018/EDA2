@@ -17,6 +17,7 @@ typedef struct {
 } UsersQueue;
 
 
+
 void init_users_queue(UsersQueue* queue);
 
 bool users_queue_empty(const UsersQueue* queue);

@@ -27,6 +27,7 @@ static void fill_stack_with_n_random_users_from_list(UsersStack* stack, const Us
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 void show_unknown_friends_menu(User* current_user, const UsersList* users)
 {
     UsersStack stack;

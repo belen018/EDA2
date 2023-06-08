@@ -19,6 +19,7 @@ typedef struct {
 } UsersList;
 
 
+
 void init_users_list(UsersList* list); //Inicializar la lista.
 
 void add_user_to_list(UsersList* list, User* user); //Añadir un usuario a la lista.

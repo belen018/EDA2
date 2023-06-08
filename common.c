@@ -18,6 +18,7 @@ int random_int(int max)
     return rand() % max;
 }
 
+
 int read_option(void)
 {
     int value;

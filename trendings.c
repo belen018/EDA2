@@ -139,6 +139,7 @@ void trendings_add_words_from_text(const char* text)
     }
 }
 
+
 void trendings_print_top_10()
 {
     const TrendingTableBucket* top[TOP_LEN];

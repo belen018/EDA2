@@ -7,6 +7,7 @@
 #define HASHTABLE_ARRAY_LEN 32
 
 
+
 void trendings_init();
 
 void trendings_clear();

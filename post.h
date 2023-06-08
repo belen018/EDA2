@@ -17,6 +17,7 @@ typedef struct {
 } PostsList;
 
 
+
 void init_posts_list(PostsList* list);
 
 void clear_posts_list(PostsList* list);

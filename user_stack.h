@@ -19,6 +19,7 @@ typedef struct {
 } UsersStack;
 
 
+
 void init_users_stack(UsersStack* stack);
 
 bool users_stack_empty(const UsersStack* stack);

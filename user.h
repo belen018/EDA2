@@ -35,6 +35,7 @@ const char* get_user_username(const User* user);  //Tenemos una función que fac
 
 void set_user_username(User* user, const char* username);
 
+
 int get_user_born_year(const User* user);
 void set_user_born_year(User* user, int year);
 
